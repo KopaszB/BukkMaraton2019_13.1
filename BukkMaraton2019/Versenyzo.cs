@@ -24,7 +24,7 @@ namespace BukkMaraton2019
         public TimeSpan Ido { get; set; }
         public string Tav { get
             {
-                return new Versenytav(Rajtszam).ToString();
+                return new Versenytav(Rajtszam).Tav;
             } }
 
 

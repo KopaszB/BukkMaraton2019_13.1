@@ -13,10 +13,72 @@ namespace BukkMaraton2019
         static void Main(string[] args)
         {
             AdatBeolvas();
-            Kiir();
+            //Kiir();
 
+            //4.feladat
+            int nemBefutok = 691-versenyzok.Count;
+            Console.WriteLine($"4. feladat: Versenytávot nem teljesítők: {(double)nemBefutok/691*100}%");
+
+            //5.feladat
+            int noiVersenyzo = 0;
+            foreach (var item in versenyzok)
+            {
+                if (item.Tav=="Rövid" && item.Kategoria.Last()=='n')
+                {
+                    noiVersenyzo++;
+                }
+            }
+            Console.WriteLine($"5. feladat: Női versenyzők száma a rövidtávú versenyen: {noiVersenyzo} fő");
+
+            //6.feladat
+            Console.WriteLine($"6. feladat: {(tobbMintHatOra()?"Volt ilyen versenyző":"Nem volt ilyen versenyző")}");
+
+            //7.feladat
+            TimeSpan minIdo = TimeSpan.MaxValue;
+            Versenyzo gyoztesRovidFF = versenyzok[0];
+            foreach (var item in versenyzok)
+            {
+                if (item.Tav=="Rövid" && item.Kategoria=="ff" && item.Ido<minIdo)
+                {
+                    minIdo = item.Ido;
+                    gyoztesRovidFF = item;
+                }
+            }
+            Console.WriteLine("7. feladat: Afelnőtt férfi (ff) kategória győztese rövid távon ");
+            Console.WriteLine($"\tRajtszám: {gyoztesRovidFF.Rajtszam}" +
+                $"\n\tNév: {gyoztesRovidFF.Nev}" +
+                $"\n\tEgyesület: {gyoztesRovidFF.Egyesulet}" +
+                $"\n\tIdő: {gyoztesRovidFF.Ido}");
+
+            //8.feladat
+            List<string> kategoriak = new List<string>();
+            for (int i = 0; i < versenyzok.Count; i++)
+            {
+                if (versenyzok[i].Kategoria.Contains(versenyzok[i].Kategoria))
+                {
+                    kategoriak.Add(versenyzok[i].Kategoria);
+                }
+            }
+            foreach (var item in kategoriak)
+            {
+                Console.WriteLine(item);
+            }
 
             Console.ReadKey();
+        }
+
+        private static bool tobbMintHatOra()
+        {
+            bool eredmeny = false;
+            foreach (var item in versenyzok)
+            {
+                if (item.Ido.TotalHours>6)
+                {
+                    eredmeny = true;
+                    break;
+                }
+            }
+            return eredmeny;
         }
 
         private static void Kiir()
@@ -44,7 +106,6 @@ namespace BukkMaraton2019
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine("Hiba: " + ex.Message);
             }
             
