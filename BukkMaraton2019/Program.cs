@@ -51,19 +51,26 @@ namespace BukkMaraton2019
                 $"\n\tIdő: {gyoztesRovidFF.Ido}");
 
             //8.feladat
-            List<string> kategoriak = new List<string>();
-            for (int i = 0; i < versenyzok.Count; i++)
+            Dictionary<string,int> statisztika = new Dictionary<string,int>();
+            foreach (var item in versenyzok)
             {
-                if (versenyzok[i].Kategoria.Contains(versenyzok[i].Kategoria))
+                if (item.Kategoria.EndsWith("f"))
                 {
-                    kategoriak.Add(versenyzok[i].Kategoria);
+                    if (statisztika.ContainsKey(item.Kategoria))
+                    {
+                        statisztika[item.Kategoria]++;
+                    }
+                    else
+                    {
+                        statisztika.Add(item.Kategoria, 1);
+                    }
                 }
             }
-            foreach (var item in kategoriak)
+            Console.WriteLine("8. feladat: Statisztika");
+            foreach (var item in statisztika) 
             {
-                Console.WriteLine(item);
+                Console.WriteLine($"\t{item.Key} - {item.Value}fő");
             }
-
             Console.ReadKey();
         }
 
