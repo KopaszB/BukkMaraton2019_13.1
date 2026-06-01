@@ -9,7 +9,56 @@
         Height="400" 
         Width="500"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0"
+                    Orientation="Horizontal"
+                    Margin="0 20 0 0">
+            <TextBlock Text="Táv:"
+                       FontSize="20"/>
+            <ComboBox Name="cb_tavok"
+                      SelectionChanged="cb_tavok_SelectionChanged"
+                      Width="250"
+                      Margin="15 0 0 0"
+                      FontSize="16"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="1"
+                    Orientation="Horizontal"
+                    Margin="0 20 0 0">
+            <TextBlock Text="Idő [óra:perc:mp]:"
+                       FontSize="20"/>
+            <TextBox 
+                     FontSize="16"
+                     Width="127"
+                     Margin="15 0 0 0"/>
+        </StackPanel>
+        <Button Content="Számol"
+                FontSize="20"
+                Grid.Column="1"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0 20 0 0"/>
+        <TextBlock Text="Átlagsebesség [km/h]:"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   FontSize="20"
+                   Margin="0 40 0 0"/>
+        <TextBlock Text="Átlagsebesség [m/s]:"
+                   Grid.Column="0"
+                   Grid.Row="3"
+                   FontSize="20"
+                   Margin="0 20 0 0"/>
+
     </Grid>
 </Window>
